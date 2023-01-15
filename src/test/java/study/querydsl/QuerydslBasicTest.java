@@ -550,5 +550,38 @@ public class QuerydslBasicTest {
         return ageCond != null ? member.age.eq(ageCond) : null;
     }
 
+    @Test
+    public void bulkUpdate(){
+        long count = queryFactory
+            .update(member)
+            .set(member.username, "비회원")
+            .where(member.age.lt(28))
+            .execute();
+
+        em.flush();
+        em.clear();
+
+        assertThat(count).isEqualTo(2);
+    }
+
+
+    @Test
+    public void bulkAdd(){
+        long count = queryFactory
+            .update(member)
+            .set(member.age, member.age.add(1))
+            .execute();
+
+        assertThat(count).isEqualTo(4);
+    }
+
+    @Test
+    public void bulkDelete(){
+        long count = queryFactory
+            .delete(member)
+            .where(member.age.gt(18))
+            .execute();
+        assertThat(count).isEqualTo(3);
+    }
 
 }
