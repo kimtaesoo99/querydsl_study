@@ -419,4 +419,6 @@ public class QuerydslBasicTest {
             System.out.println("age = " + age);
         }
     }
+
+
 }
