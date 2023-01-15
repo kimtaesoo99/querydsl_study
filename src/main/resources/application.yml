@@ -1,7 +1,9 @@
 spring:
+  profiles:
+    active: local
   datasource:
     url: jdbc:h2:tcp://localhost/~/querydsl
-    username:
+    username: 
     password:
     driver-class-name: org.h2.Driver
 
